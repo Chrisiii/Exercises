@@ -104,3 +104,107 @@ arrayOfObjectNames.forEach(function(element) {
     let boundObj = logArrayObjectNames.bind(element)
     boundObj()
 })
+
+// 6) for above mentioned arrayOfObjectNames Return an array of functions that when called would log each objects name
+// use Array.map and logArrayObjectNames function
+
+mappedFunc.forEach(i => i()); // this would print 1, 2, 3
+
+const mappedFunc = arrayOfObjectNames.map( (item) => {
+ function logArrayObjectNames(){
+    console.log(this.name);
+}
+    let boundObj = logArrayObjectNames.bind(item);
+    return boundObj
+} )
+
+
+//7. please take a look at the following
+// this is just an example of object that you will still need to create by calling CreateCar constructor
+
+const exampleOfAlreadyCreatedObject = {
+    id: 1,
+    model: 'Toyota',
+    year: '1996',
+    color: 'red',
+    driveTrain: '4x4',
+}
+
+
+function CreateCar(id, model, year, color, driveTrain){
+    // please implement CreateCar function so it creates cars with properties
+    // id : ,
+    // model: ,
+    // year: ,
+    // color: ,
+    // driveTrain: ,
+}
+
+// please take a look at the the inventory object and implement the missing methods
+
+function CreateCar(id, model, year, color, driveTrain){
+    this.id = id,
+    this.model = model,
+    this.year = year,
+    this.color = color,
+    this.driveTrain = driveTrain
+}
+
+const inventory = {
+
+    cars: [],
+
+    addCar(car) {
+    	this.cars.push(car)
+    },
+
+    removeCar(id) {
+    	let index = this.cars.find(item => {
+           return item.id === id
+       })
+
+        const res = this.cars.filter(item => {
+            return item !== index
+        })
+        return(res)
+    },
+
+    listCars(){
+    	this.cars.forEach(item => console.log(item))
+    },
+
+    listCarsByConditionCallback(conditionCallback){
+        // this function should accept a parameter conditionCallback, which is a function,
+
+        // the conditionCallback would be called on every car with that car passed to conditionCallback
+        // if conditionCallback returns true then the car is logged into console.
+        // please implement it
+    }
+
+}
+
+
+inventory.addCar(new CreateCar(1, 'Toyota', '1996', 'red', '4x4'));
+inventory.addCar(new CreateCar(2, 'Mercedes', '2000', 'white', 'rear wheel drive'));
+inventory.addCar(new CreateCar(3, 'BMW', '2020', 'black', 'rear wheel drive'));
+inventory.removeCar(2);
+inventory.listCars();
+inventory.listCarsByConditionCallback( (car) => car.model === 'BMW' && car.year === '2020' );
+
+
+//8. Create a constructor function called Song. Song should take in two arguments, title and artist, which should both be
+// added as properties when the Song constructor function is used. The Song function should also have a method called
+// play When called, the play function should console.log the name of that specific song preceded by the
+// word 'Playing:'.
+// NOTE that play function should be the same for all instances of the Song constructor
+
+
+function Song(title, artist){
+    this.title = title,
+    this.artirst = artist
+
+    this.play = function(){
+        console.log(this.title + " Playing")
+    }
+}
+
