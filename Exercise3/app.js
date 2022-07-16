@@ -32,10 +32,10 @@ const flights = {
     },
 
     removeFlight(flight){
-        this.flights = this.flights.filter(flightFilter);
+        this.flights = this.flights.filter(flightFilter.bind(this));
         function flightFilter(f){
             if (flight === f){
-                return priorityFlights.includes(flight);
+                return this.priorityFlights.includes(flight);
             }
             return true
         }
@@ -174,6 +174,14 @@ const inventory = {
     },
 
     listCarsByConditionCallback(conditionCallback){
+        this.cars.forEach(item => {
+            for(let key in item){
+                let value = item[key]
+               if(value === conditionCallback){
+                   console.log(item)
+               }
+            }
+        })
         // this function should accept a parameter conditionCallback, which is a function,
 
         // the conditionCallback would be called on every car with that car passed to conditionCallback
@@ -207,4 +215,34 @@ function Song(title, artist){
         console.log(this.title + " Playing")
     }
 }
+
+// 9)
+// 1. Create a folder called Workshop_4 make a git repository inside.
+// 2. without navigating to a different branch create a branch named x_branch
+
+//mkdir Workshop_4
+//git init
+//git branch x_branch
+
+//10
+// 1. Make a new folder called 'Workshop_4'
+// 2. make that folder into git repo
+// 2. create a branch called rename_me
+// 3. create a branch called delete_me
+// 4. rename the branch rename_me to renamed_branch
+// 5. delete the branch delete_me
+
+//mkdir Workshop_4
+//git init 
+//git add .
+//git commit -m "init"
+//git push
+//git branch -b rename_me
+//git branch -b delete_me
+//git branch -m rename_me renamed_branch
+//git branch -d delete_me
+
+
+
+
 
