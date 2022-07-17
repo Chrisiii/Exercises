@@ -175,18 +175,10 @@ const inventory = {
 
     listCarsByConditionCallback(conditionCallback){
         this.cars.forEach(item => {
-            for(let key in item){
-                let value = item[key]
-               if(value === conditionCallback){
+               if(conditionCallback(item)){
                    console.log(item)
                }
-            }
         })
-        // this function should accept a parameter conditionCallback, which is a function,
-
-        // the conditionCallback would be called on every car with that car passed to conditionCallback
-        // if conditionCallback returns true then the car is logged into console.
-        // please implement it
     }
 
 }
